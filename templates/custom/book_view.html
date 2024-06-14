@@ -1,0 +1,54 @@
+{% extends 'custom/dashboard.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="container">
+    <h1 class="text-center">CUSTOMER_BOOK_VIEW</h1>
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-8">
+            <div class="card border-0 shadow">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead class="bg-primary text-white">
+                                <tr>
+                                    <tr><th>hospital</th>
+                                    <th>Vaccine</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>end time</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                              {% for i in see %}
+                                <tr>
+                                    <td>{{ i.schedule.hospital }}</td>
+                                    <td>{{ i.schedule.vaccine }}</td>
+                                    <td>{{ i.schedule.date }}</td>
+                                    <td>{{ i.schedule.start_time }} </td>
+                                    <td>{{ i.schedule.end_time }} </td>
+                                    <td>
+                                        {% if i.status == 0 %}
+                                        <p>PENDING</p>
+
+                                        {% elif i.status == 1 %}
+
+                                        <p>APPROVED</p>
+
+                                        {% else %}
+
+                                        <p>Rejected</p>
+
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                              {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

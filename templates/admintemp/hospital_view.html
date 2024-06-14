@@ -1,0 +1,63 @@
+{% extends 'admintemp/dashboard.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+<style>
+    /* Define custom styles for the card */
+    .custom-card {
+        background-color: #f8d7da; /* Change background color */
+        border: 3px solid #dc3545; /* Change border color */
+        border-radius: 10px; /* Add border-radius for rounded corners */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add box shadow */
+    }
+
+    /* Define custom styles for the table */
+    .custom-table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 3px solid #dc3545; /* Change border color */
+    }
+    .custom-table th,
+    .custom-table td {
+        padding: 10px;
+        border: 1px solid #dc3545; /* Change border color */
+        text-align: center;
+    }
+    .custom-table th {
+        background-color: #dc3545; /* Change header background color */
+        color: #fff; /* Header text color */
+    }
+    .custom-table td img {
+        max-width: 100px;
+        max-height: 100px;
+        border-radius: 50%; /* Add border-radius to round images */
+    }
+</style>
+<div class="container">
+    <h1 class="text-center">HOSPITAL_VIEW</h1><br>
+    <div class="row justify-content-center">
+        <div class="card w-75 mx-auto custom-card"> <!-- Apply custom-card class -->
+            <table class="custom-table"> <!-- Apply custom-table class -->
+                <tr>
+                    <th>Name</th>
+                    <th>Email ID</th>
+                    <th>Phone Number</th>
+                    <th>Hospital</th>
+                    <th>Image</th>
+                    <th colspan="2">Actions</th> <!-- Merge the edit and delete columns -->
+                </tr>
+                {% for i in image %}
+                <tr>
+                    <td>{{ i.name }}</td>
+                    <td>{{ i.email_id }}</td>
+                    <td>{{ i.phone_no }}</td>
+                    <td>{{ i.hospital }}</td>
+                    <td><img src="{{ i.image.url }}" alt="image"></td>
+                    <td><a href="{% url 'hospital_update' i.id %}"><button class="border-3 border-warning">Edit</button></a></td>
+                    <td><a href="{% url 'hospital_delete' i.id %}"><button class="border-3 border-warning">Delete</button></a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

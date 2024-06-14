@@ -1,0 +1,27 @@
+{% extends 'admintemp/dashboard.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+<style>
+    /* Define custom styles for the form */
+    .custom-card {
+        background-color: linear-gradient(135deg, #ffcc00, #ff5733); /* Mixed colors */
+        border: 3px solid #333333; /* Change border color if needed */
+    }
+</style>
+<div class="container">
+    <h1 class="text-center">HOSPITAL_ADD</h1><br>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card custom-card"> <!-- Apply custom-card class -->
+                <div class="card-body">
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ add|crispy }}
+                        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

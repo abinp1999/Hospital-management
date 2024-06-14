@@ -1,0 +1,24 @@
+{% extends 'admintemp/dashboard.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+<style>
+    /* Define custom styles for the form */
+    .custom-card {
+        background-color: #17a2b8; /* Change background color */
+        border: 3px solid #0d6efd; /* Change border color */
+    }
+</style>
+<div class="container">
+    <h1 class="text-center">HOSPITAL_UPDATE</h1><br>
+    <div class="row">
+        <div class="card text-center w-50 mx-auto custom-card">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ updateform|crispy }}
+
+                <input type="submit" id="submit">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

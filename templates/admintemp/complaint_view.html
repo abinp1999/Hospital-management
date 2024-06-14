@@ -1,0 +1,54 @@
+{% extends 'admintemp/dashboard.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+  <div class="container">
+      <h1 class="text-center">ADMIN_COMPLAINT_VIEW</h1><br>
+      <div class="row">
+          <div class="card w-100 mx-auto lg-12">
+
+  <table class="table">
+      <tr>
+          <th>type</th>
+          <th>Username</th>
+          <th>Date</th>
+          <th>Subject</th>
+          <th>Complaint</th>
+          <th>Reply</th>
+      </tr>
+      {% for i in complaint %}
+      <tr>
+
+      <td>
+          {% if i.User.is_Nurse %}
+          <p>Nurse</p>
+          {% elif i.User.is_user%}
+          <p>User</p>
+          {% endif %}
+      </td>
+         <td>{{i.User}}</td>
+         <td>{{i.date}}</td>
+         <td>{{i.subject }}</td>
+         <td>{{i.complaint}}</td>
+      <td>
+
+          {% if i.reply == None %}
+          <a  href="{% url 'reply_now' i.id%}">
+           <button>Reply Now</button>       </a>
+          {% else %}
+          {{i.reply}}
+
+          {% endif %}
+      </td>
+
+
+
+      </tr>
+      {% endfor %}
+  </table>
+
+          </div>
+      </div>
+
+  </div>
+
+{% endblock %}

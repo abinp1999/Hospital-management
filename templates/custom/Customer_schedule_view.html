@@ -1,0 +1,42 @@
+{% extends 'custom/dashboard.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="container">
+    <h1 class="text-center">CUSTOMER_SCHEDULE_VIEW</h1>
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-8">
+            <div class="card border-0 shadow">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead class="bg-primary text-white">
+                                <tr>
+                                    <tr><th>Hospital</th>
+                                    <th>Vaccine</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in schedule %}
+                                <tr>
+                                    <td>{{ i.hospital }}</td>
+                                    <td>{{ i.vaccine }}</td>
+                                    <td>{{ i.date }}</td>
+                                    <td>{{ i.start_time }} - {{ i.end_time }}</td>
+                                    <td>
+                                        <a href="{% url 'book_add' i.id %}"><button>Book-Appointment</button></a>
+
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'admintemp/dashboard.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="container">
+    <h1 class="text-center">VACCINE_VIEW</h1><br>
+    <div class="row">
+        <div class="col-md-10 mx-auto"> <!-- Adjust column size as needed -->
+            <div class="card">
+                <div class="card-body">
+                    <table class="table table-striped"> <!-- Added table class for Bootstrap styling -->
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Expiry Date</th> <!-- Corrected typo in "Expiry" -->
+                                <th>Description</th>
+                                <th>Actions</th> <!-- Added a column for actions -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in image %}
+                            <tr>
+                                <td>{{ i.name }}</td>
+                                <td>{{ i.ex_date }}</td>
+                                <td>{{ i.description }}</td>
+                                <td>
+                                    <a href="{% url 'vaccin_update' i.id %}" class="btn btn-primary">Edit</a> <!-- Added a class for Bootstrap styling -->
+                                    <a href="{% url 'vaccin_delete' i.id %}" class="btn btn-danger">Delete</a> <!-- Added a class for Bootstrap styling -->
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+# Django
+*.log
+*.pot
+*.pyc
+__pycache__/
+
+# Virtualenv
+.env
+venv/
+ENV/
+
+# IDEs
+.idea/
+.vscode/

@@ -1,0 +1,42 @@
+{% extends 'nurse/dashboard.html' %}
+{% block content %}
+    {% load crispy_forms_tags %}
+    <div class="container">
+        <h1 class="text-center">NURSE_COMPLAINT_VIEW</h1><br>
+        <div class="row">
+            <div class="card w-100 mx-auto">
+                <table class="table">
+                    <tr>
+                        <th>Date</th>
+                        <th>Subject</th>
+                        <th>Complaint</th>
+                        <th>Reply</th>
+                        <th>Actions</th>
+                    </tr>
+                    {% for i in image %}
+                        <tr>
+                            <td>{{ i.date }}</td>
+                            <td>{{ i.subject }}</td>
+                            <td style="word-wrap: break-word;">{{ i.complaint }}</td>
+                            <td>
+                                {% if i.reply %}
+                                    {{ i.reply }}
+                                {% else %}
+                                    <p>No Reply</p>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="{% url 'nurse_complaint_update' i.id %}">
+                                    <button class="border-3 border-warning">Edit</button>
+                                </a>
+                                <a href="{% url 'nurse_complaint_delete' i.id %}">
+                                    <button class="border-3 border-warning">Delete</button>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

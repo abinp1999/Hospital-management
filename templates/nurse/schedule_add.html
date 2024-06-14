@@ -1,0 +1,19 @@
+{% extends 'nurse/dashboard.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+  <div class="container">
+      <h1 class="text-center">schedule_add</h1><br>
+      <div class="row">
+          <div class="card text-center w-50 mx-auto">
+              <form method="POST">
+                  {% csrf_token %}
+                  {{schedule|crispy}}
+
+                  <input type="submit" id="submit">
+              </form>
+          </div>
+      </div>
+
+  </div>
+
+{% endblock %}

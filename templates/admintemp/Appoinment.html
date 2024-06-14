@@ -1,0 +1,56 @@
+{% extends 'admintemp/dashboard.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="container">
+    <h1 class="text-center">Appointment View</h1>
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-8">
+            <div class="card border-0 shadow">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead class="bg-primary text-white">
+                                <tr>
+                                    <th>Hospital</th>
+                                    <th>Vaccine</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>End Time</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>  <!-- New column for actions -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                              {% for i in after %}
+                                <tr>
+                                    <td>{{ i.schedule.hospital }}</td>
+                                    <td>{{ i.schedule.vaccine }}</td>
+                                    <td>{{ i.schedule.date }}</td>
+                                    <td>{{ i.schedule.start_time }}</td>
+                                    <td>{{ i.schedule.end_time }}</td>
+                                    <td>
+                                        {% if i.status == 0 %}
+                                            Pending
+                                        {% elif i.status == 1 %}
+                                            Accepted
+                                        {% else %}
+                                            Rejected
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if i.status == 0 %}
+                                            <a href="{% url 'accept_appointment' i.id %}" class="btn btn-success">Accept</a>
+                                            <a href="{% url 'reject_appointment' i.id %}" class="btn btn-danger">Reject</a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                              {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
